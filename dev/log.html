@@ -24,12 +24,26 @@
     <a onclick="repeatLog()" href="javascript:;" class="weui_btn weui_btn_default">repeatLog</a>
     <a onclick="windowError()" href="javascript:;" class="weui_btn weui_btn_default">window.error</a>
   </div>
+  <div class="page2" style="position: relative; transform: translate(0); width: 300px;"></div>
 </body>
 </html>
 
 <script>
 window.vConsole = new window.VConsole({
   maxLogNumber: 1000,
+  containerEl: document.querySelector('.page'),
+  // disableLogScrolling: true,
+  onReady: function() {
+    console.log('vConsole is ready.');
+  },
+  onClearLog: function() {
+    console.log('on clearLog');
+  }
+});
+
+new window.VConsole({
+  maxLogNumber: 1000,
+  containerEl: document.querySelector('.page2'),
   // disableLogScrolling: true,
   onReady: function() {
     console.log('vConsole is ready.');

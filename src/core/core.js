@@ -143,12 +143,17 @@ class VConsole {
    * @private
    */
   _render() {
-    if (! $.one(VCONSOLE_ID)) {
+    if (!this.$dom) {
       let e = document.createElement('div');
       e.innerHTML = tpl;
-      document.documentElement.insertAdjacentElement('beforeend', e.children[0]);
+      this.$dom = e.children[0]
+      if (this.option.containerEl) {
+        this.option.containerEl.appendChild(e.children[0]);
+      } else {
+        document.documentElement.insertAdjacentElement('beforeend', e.children[0]);
+      }
     }
-    this.$dom = $.one(VCONSOLE_ID);
+    // this.$dom = $.one(VCONSOLE_ID);
 
     // reposition switch button
     let $switch = $.one('.vc-switch', this.$dom);
