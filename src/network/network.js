@@ -122,7 +122,9 @@ class VConsoleNetworkTab extends VConsolePlugin {
 
   scrollToBottom() {
     let $box = $.one('.vc-content');
-    $box.scrollTop = $box.scrollHeight - $box.offsetHeight;
+    if ($box) {
+      $box.scrollTop = $box.scrollHeight - $box.offsetHeight;
+    }
   }
 
   clearLog() {
@@ -149,7 +151,7 @@ class VConsoleNetworkTab extends VConsolePlugin {
       this.$header.parentNode.replaceChild($header, this.$header);
     } else {
       // add
-      $logbox.parentNode.insertBefore($header, $logbox);
+      $logbox.parentNode && $logbox.parentNode.insertBefore($header, $logbox);
     }
     this.$header = $header;
   }
@@ -398,7 +400,7 @@ class VConsoleNetworkTab extends VConsolePlugin {
     };
 
   };
-  
+
   /**
    * mock fetch request
    * @private
@@ -412,10 +414,10 @@ class VConsoleNetworkTab extends VConsolePlugin {
       let id = that.getUniqueID()
       that.reqList[id] = {}
       let item = that.reqList[id] || {};
-      let query = url.split('?'); 
+      let query = url.split('?');
       item.id = id;
       item.method = init.method||'GET';
-      item.url = query.shift(); 
+      item.url = query.shift();
 
       if (query.length > 0) {
         item.getData = {};

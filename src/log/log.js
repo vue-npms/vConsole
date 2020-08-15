@@ -443,7 +443,7 @@ class VConsoleLogTab extends VConsolePlugin {
     if (!$repeat) {
       $repeat = document.createElement('i');
       $repeat.className = 'vc-item-repeat';
-      $item.insertBefore($repeat, $item.lastChild);
+      $item && $item.insertBefore($repeat, $item.lastChild);
     }
     if (!preLog.count) {
       // preLog.count = 1;
